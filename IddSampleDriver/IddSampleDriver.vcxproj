@@ -117,7 +117,7 @@
     <IndirectDisplayDriver>true</IndirectDisplayDriver>
     <IDDCX_VERSION_MAJOR>1</IDDCX_VERSION_MAJOR>
     <IDDCX_VERSION_MINOR>10</IDDCX_VERSION_MINOR>
-    <Driver_SpectreMitigation>Spectre</Driver_SpectreMitigation>
+    <Driver_SpectreMitigation>false</Driver_SpectreMitigation>
     <UMDF_VERSION_MINOR>25</UMDF_VERSION_MINOR>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -127,7 +127,7 @@
     <IndirectDisplayDriver>true</IndirectDisplayDriver>
     <IDDCX_VERSION_MAJOR>1</IDDCX_VERSION_MAJOR>
     <IDDCX_VERSION_MINOR>10</IDDCX_VERSION_MINOR>
-    <Driver_SpectreMitigation>Spectre</Driver_SpectreMitigation>
+    <Driver_SpectreMitigation>false</Driver_SpectreMitigation>
     <UMDF_VERSION_MINOR>25</UMDF_VERSION_MINOR>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">

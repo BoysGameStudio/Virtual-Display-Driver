@@ -220,11 +220,12 @@ NTSTATUS IddSampleDeviceD0Entry(WDFDEVICE Device, WDF_POWER_DEVICE_STATE Previou
 
 #pragma region Direct3DDevice
 
-Direct3DDevice::Direct3DDevice(LUID AdapterLuid) : AdapterLuid(AdapterLuid)
+Direct3DDevice::Direct3DDevice(LUID AdapterLuid) : AdapterLuid{ AdapterLuid }
 {
+
 }
 
-Direct3DDevice::Direct3DDevice()
+Direct3DDevice::Direct3DDevice() : AdapterLuid{ 0,0 }
 {
 }
 
@@ -464,7 +465,7 @@ const BYTE IndirectDeviceContext::s_KnownMonitorEdid[] =
 };
 
 IndirectDeviceContext::IndirectDeviceContext(_In_ WDFDEVICE WdfDevice) :
-	m_WdfDevice(WdfDevice)
+	m_WdfDevice(WdfDevice), m_Adapter{0}, m_Monitor {0}, m_Monitor2{0}
 {
 	m_Adapter = {};
 }
@@ -720,7 +721,7 @@ void CreateTargetMode(DISPLAYCONFIG_VIDEO_SIGNAL_INFO& Mode, UINT Width, UINT He
 	Mode.vSyncFreq.Denominator = Mode.hSyncFreq.Denominator = 1;
 	Mode.hSyncFreq.Numerator = VSync * Height;
 	Mode.scanLineOrdering = DISPLAYCONFIG_SCANLINE_ORDERING_PROGRESSIVE;
-	Mode.pixelRate = VSync * Width * Height;
+	Mode.pixelRate = UINT64(VSync) * Width * Height;
 }
 
 void CreateTargetMode(IDDCX_TARGET_MODE& Mode, UINT Width, UINT Height, UINT VSync)

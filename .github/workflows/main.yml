@@ -23,6 +23,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set up WDK version 22621 for no reason
+      run: |
+        $wdkSetupPath = "$Env:TEMP\wdksetup.exe"
+        (New-Object Net.WebClient).DownloadFile('https://go.microsoft.com/fwlink/?linkid=2249371', $wdkSetupPath)
+        Start-Process -FilePath $wdkSetupPath -ArgumentList "/quiet" -NoNewWindow -Wait
+
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1
 
